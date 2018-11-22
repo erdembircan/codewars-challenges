@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Codewars</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://vuejs.org/js/vue.min.js"></script>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="load_container" v-if="!loaded">
+        <div class="spinner_out"><div class="spinner_in"></div></div>
+        <p>Loading...</p>
+      </div>
+      <div v-else class="data_container">
+        <a :href="codewarsProfile" target="_blank">
+          <img class="avatar" :src="avatar" />
+        </a>
+        <h2>{{ userData.name }}</h2>
+        <p>leaderboard position: {{ userData.leaderboardPosition }}</p>
+        <p>honor: {{ userData.honor }}</p>
+        <p>
+          challenges completed: {{ userData.codeChallenges.totalCompleted }}
+        </p>
+
+        <h3 style="text-decoration: underline">Languages</h3>
+        <div class="languages_container">
+          <div
+            align="center"
+            class="language"
+            v-for="(lang,key) in userData.ranks.languages"
+          >
+            <b style="text-decoration: underline">{{ key }}</b>
+            <p :style="{color: lang.color}">{{ lang.name }}</p>
+            <p>score: {{ lang.score }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/main.js"></script>
+  </body>
+</html>
