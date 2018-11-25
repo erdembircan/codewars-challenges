@@ -20,10 +20,26 @@ function findOutlier(integers) {
     : integers.find(findEven);
 }
 
+function randomTest(length) {
+  function floorRandom(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+  const odd = Math.random() > 0.5;
+  const tempArray = Array.from({ length }, (_, i) => (floorRandom(100) * 2 + odd ? 1 : 0));
+  const rogue = floorRandom(100) * 2 + odd ? 0 : 1;
+  tempArray[floorRandom(length)] = rogue;
+  expect(findOutlier(tempArray)).toBe(rogue);
+}
+
 it('parity outlier', () => {
   expect(findOutlier([0, 1, 2])).toBe(1);
   expect(findOutlier([1, 2, 3])).toBe(2);
   expect(findOutlier([2, 6, 8, 10, 3])).toBe(3);
   expect(findOutlier([0, 0, 3, 0, 0])).toBe(3);
   expect(findOutlier([1, 1, 0, 1, 1])).toBe(0);
+  randomTest(100);
+  randomTest(1000);
+  randomTest(1000);
+  randomTest(1000);
 });
