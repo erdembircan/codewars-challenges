@@ -39,7 +39,7 @@ it('parity outlier', () => {
   expect(findOutlier([0, 0, 3, 0, 0])).toBe(3);
   expect(findOutlier([1, 1, 0, 1, 1])).toBe(0);
   randomTest(100);
-  randomTest(1000);
-  randomTest(1000);
-  randomTest(1000);
+  randomTest(10000);
+  randomTest(100000);
+  randomTest(1000000);
 });
